@@ -93,7 +93,7 @@ Internet
 
 2. **Make it executable:**
    ```bash
-   chmod +x deploy-multitier.sh
+   chmod +x deploy-work.sh
    ```
 
 3. **Log in to Azure:**
@@ -103,7 +103,7 @@ Internet
 
 4. **Run the script:**
    ```bash
-   ./deploy-multitier.sh
+   ./deploy-work.sh
    ```
 
 The script uses `set -e`, so it will exit immediately if any command fails.
@@ -124,23 +124,9 @@ az network watcher test-ip-flow ... --local 10.0.1.4:* --remote 10.0.3.4:1433
 
 ---
 
-## Known Issues & Bugs
-
-The following issues were identified in the script and should be fixed before running in production:
-
-| Line | Issue | Fix |
-|---|---|---|
-| HTTPS NSG rule | `-protocol` is missing the leading `--` | Change to `--protocol` |
-| Deny-To-DBTier rule | Rule name has a space: `Deny-To DBTier` | Change to `Deny-To-DBTier` |
-| Allow-From-WebTier rule | `--source-adres-prefixes` is a typo | Change to `--source-address-prefixes` |
-| NSG-DB outbound rule | `-access` is missing the leading `--` | Change to `--access` |
-| DBSubnet NSG association | Subnet name `DBSubnet` does not match the created name `DataBaseSubnet` | Change to `--name DataBaseSubnet` |
-
----
-
 ## Security Considerations
 
-- **Passwords** are hardcoded in the script (`Password@meziky303`). For production deployments, use Azure Key Vault or environment variables instead.
+- **Passwords** are hardcoded in the script (`Password@meziky303`).
 - The Database Tier has no outbound internet access, limiting its exposure.
 - The Web Tier is completely blocked from reaching the Database Tier directly, enforcing tier separation.
 
