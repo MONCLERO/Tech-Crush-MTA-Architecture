@@ -1,0 +1,3 @@
+echo "Create Resource Group for the MTA" ...
+
+az group create --name multitierRG --location southafricanorth
