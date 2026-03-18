@@ -118,6 +118,35 @@ The script uses `set -e`, so it will exit immediately if any command fails.
 
 ---
 
+## Connectivity Testing (ICMP / Ping Validation)
+
+To validate network segmentation and NSG rule enforcement, ICMP (ping) tests were performed between the tiers.
+````
+Note: ICMP must be explicitly allowed in NSGs and enabled on the VM OS for these tests to succeed.
+````
+- From Web VM → App VM
+ping 10.0.2.X
+
+- From Web VM → Database VM
+ping 10.0.3.X
+
+- From App VM → Database VM
+ping 10.0.3.X
+
+- From App VM → Web VM
+ping 10.0.1.X
+
+**Expected Results**
+
+| Source   | Destination   | Expected Result | Reason                                      |
+| -------- | ------------- | --------------- | ------------------------------------------- |
+| Web Tier | App Tier      | ✅ Success       | Allowed communication (App listens on 8080) |
+| Web Tier | Database Tier | ❌ Failed        | Blocked by NSG (no direct access)           |
+| App Tier | Database Tier | ✅ Success       | Allowed on SQL port (1433)                  |
+| App Tier | Web Tier      | ❌ Failed        | Explicitly denied in NSG                    |
+
+---
+
 ## Cleanup
 
 To delete all deployed resources and avoid ongoing charges:
