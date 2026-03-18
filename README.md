@@ -59,7 +59,7 @@ Internet
 
 ## NSG Rules Summary
 
-### Web Tier (`nsgweb`)
+### Web Tier (`WebNSG`)
 
 | Rule Name | Direction | Action | Protocol | Source | Destination | Port |
 |---|---|---|---|---|---|---|
@@ -68,7 +68,7 @@ Internet
 | Allow-To-AppTier | Outbound | Allow | TCP | 10.0.1.0/24 | 10.0.2.0/24 | 8080 |
 | Deny-To-DBTier | Outbound | Deny | Any | 10.0.1.0/24 | 10.0.3.0/24 | Any |
 
-### App Tier (`nsgapp`)
+### App Tier (`AppNSG`)
 
 | Rule Name | Direction | Action | Protocol | Source | Destination | Port |
 |---|---|---|---|---|---|---|
@@ -77,7 +77,7 @@ Internet
 | Allow-To-DBTier | Outbound | Allow | TCP | 10.0.2.0/24 | 10.0.3.0/24 | 1433 |
 | Deny-To-WebTier | Outbound | Deny | TCP | 10.0.2.0/24 | 10.0.1.0/24 | Any |
 
-### Database Tier (`nsg-db`)
+### Database Tier (`DataBaseNSG`)
 
 | Rule Name | Direction | Action | Protocol | Source | Destination | Port |
 |---|---|---|---|---|---|---|
@@ -140,10 +140,10 @@ ping 10.0.1.X
 
 | Source   | Destination   | Expected Result | Reason                                      |
 | -------- | ------------- | --------------- | ------------------------------------------- |
-| Web Tier | App Tier      | ✅ Success       | Allowed communication (App listens on 8080) |
-| Web Tier | Database Tier | ❌ Failed        | Blocked by NSG (no direct access)           |
-| App Tier | Database Tier | ✅ Success       | Allowed on SQL port (1433)                  |
-| App Tier | Web Tier      | ❌ Failed        | Explicitly denied in NSG                    |
+| Web Tier | App Tier      |   Success       | Allowed communication (App listens on 8080) |
+| Web Tier | Database Tier |   Failed        | Blocked by NSG (no direct access)           |
+| App Tier | Database Tier |   Success       | Allowed on SQL port (1433)                  |
+| App Tier | Web Tier      |   Failed        | Explicitly denied in NSG                    |
 
 ---
 
