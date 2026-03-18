@@ -110,23 +110,9 @@ The script uses `set -e`, so it will exit immediately if any command fails.
 
 ---
 
-## Traffic Flow Verification
-
-After deployment, the script runs two Network Watcher IP flow tests:
-
-```bash
-# ✅ Should be ALLOWED — Web Tier → App Tier on port 8080
-az network watcher test-ip-flow ... --local 10.0.1.4:* --remote 10.0.2.4:8080
-
-# ❌ Should be DENIED — Web Tier → DB Tier on port 1433
-az network watcher test-ip-flow ... --local 10.0.1.4:* --remote 10.0.3.4:1433
-```
-
----
-
 ## Security Considerations
 
-- **Passwords** are hardcoded in the script (`Password@meziky303`).
+- SSH Keys were used for authentication mode for all virtual machines.
 - The Database Tier has no outbound internet access, limiting its exposure.
 - The Web Tier is completely blocked from reaching the Database Tier directly, enforcing tier separation.
 
@@ -136,6 +122,7 @@ az network watcher test-ip-flow ... --local 10.0.1.4:* --remote 10.0.3.4:1433
 
 To delete all deployed resources and avoid ongoing charges:
 
+**Run the script:**
 ```bash
-az group delete --name multitierRG --yes --no-wait
+  ./kill
 ```
