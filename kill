@@ -1,1 +1,1 @@
-echo "Deleting Resource group ..." && az group delete --name multitierRG --yes --no-wait
+echo "Deleting Resource group ..." && az group delete --name multitierRG --yes --no-wait | az group delete --name NetworkWatcherRG --yes --no-wait

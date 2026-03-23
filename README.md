@@ -51,9 +51,7 @@ Internet
 | Web VM | `WebVM` | Ubuntu 24.04 |
 | App VM | `AppVM` | Ubuntu 24.04 |
 | Database VM | `DataBaseVM` | Ubuntu 22.04 |
-| Web NSG | `nsgweb` | Attached to WebSubnet |
-| App NSG | `nsgapp` | Attached to AppSubnet |
-| DB NSG | `nsg-db` | Attached to DataBaseSubnet |
+| NSG | `MTA-NSG` | Attached to all 3 subnets |
 
 ---
 

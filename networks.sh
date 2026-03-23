@@ -27,4 +27,5 @@ echo "Creating Vnets with 3 Subnets - Web, App, DataBase" ...
    --vnet-name multitier-vnet \
    --address-prefixes 10.0.3.0/24
 
+
 echo "Network resource deployments successful !!!"

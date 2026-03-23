@@ -8,7 +8,6 @@ echo "Provision Linux VMs in each Subnet" ...
    --image Ubuntu2404 \
    --vnet-name multitier-vnet \
    --subnet WebSubnet \
-   --authentication-type password \
    --admin-username webvirtual \
    --generate-ssh-keys
 
@@ -20,7 +19,6 @@ echo "Provision Linux VMs in each Subnet" ...
    --image Ubuntu2404 \
    --vnet-name multitier-vnet \
    --subnet AppSubnet \
-   --authentication-type password \
    --admin-username appvirtual \
    --generate-ssh-keys
 
@@ -32,7 +30,6 @@ echo "Provision Linux VMs in each Subnet" ...
    --image Ubuntu2204 \
    --vnet-name multitier-vnet \
    --subnet DataBaseSubnet \
-   --authentication-type password \
    --admin-username dbvirtual \
    --generate-ssh-keys
 
